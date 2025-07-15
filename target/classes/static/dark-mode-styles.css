@@ -1,0 +1,215 @@
+/* ===== DARK MODE - ADICIONAR AO FINAL DO STYLES.CSS ===== */
+
+/* Botão toggle do tema */
+#theme-toggle {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    z-index: 9999 !important;
+    background: #333 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 20px !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+#theme-toggle:hover {
+    background: #555 !important;
+    transform: scale(1.1) !important;
+}
+
+/* Variáveis CSS para cores */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --card-bg: #f8f9fa;
+    --border-color: #dee2e6;
+    --input-bg: #ffffff;
+    --button-bg: #007bff;
+    --button-hover: #0056b3;
+    --navbar-bg: #343a40;
+    --navbar-text: #ffffff;
+    --footer-bg: #343a40;
+    --footer-text: #ffffff;
+}
+
+/* Tema escuro */
+.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --card-bg: #2d2d2d;
+    --border-color: #404040;
+    --input-bg: #2d2d2d;
+    --button-bg: #0d6efd;
+    --button-hover: #0b5ed7;
+    --navbar-bg: #000000;
+    --navbar-text: #ffffff;
+    --footer-bg: #000000;
+    --footer-text: #e0e0e0;
+}
+
+/* Aplicar cores */
+body {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    transition: background-color 0.3s ease, color 0.3s ease !important;
+}
+
+/* Cards e containers */
+.card, .container, .row, .col {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Inputs e forms */
+input, textarea, select {
+    background-color: var(--input-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+input:focus, textarea:focus, select:focus {
+    background-color: var(--input-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--button-bg) !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+}
+
+/* Botões */
+.btn-primary {
+    background-color: var(--button-bg) !important;
+    border-color: var(--button-bg) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--button-hover) !important;
+    border-color: var(--button-hover) !important;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--navbar-bg) !important;
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+    color: var(--navbar-text) !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ccc !important;
+}
+
+/* Footer */
+footer {
+    background-color: var(--footer-bg) !important;
+    color: var(--footer-text) !important;
+}
+
+/* Tabelas */
+table {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+}
+
+table th, table td {
+    border-color: var(--border-color) !important;
+}
+
+/* Modais */
+.modal-content {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+}
+
+.modal-header {
+    border-bottom-color: var(--border-color) !important;
+}
+
+.modal-footer {
+    border-top-color: var(--border-color) !important;
+}
+
+/* Alertas */
+.alert {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Listas */
+.list-group-item {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Dropdown */
+.dropdown-menu {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+.dropdown-item {
+    color: var(--text-color) !important;
+}
+
+.dropdown-item:hover {
+    background-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* Texto específico */
+h1, h2, h3, h4, h5, h6, p, span, div, label {
+    color: var(--text-color) !important;
+}
+
+/* Links */
+a {
+    color: var(--button-bg) !important;
+}
+
+a:hover {
+    color: var(--button-hover) !important;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background-color: var(--card-bg) !important;
+}
+
+.breadcrumb-item {
+    color: var(--text-color) !important;
+}
+
+/* Paginação */
+.pagination .page-link {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+.pagination .page-link:hover {
+    background-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* Badges */
+.badge {
+    background-color: var(--button-bg) !important;
+    color: white !important;
+}
+
+/* Progress bars */
+.progress {
+    background-color: var(--border-color) !important;
+}
+
+.progress-bar {
+    background-color: var(--button-bg) !important;
+}
