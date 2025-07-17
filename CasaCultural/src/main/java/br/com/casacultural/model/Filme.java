@@ -69,7 +69,7 @@ public class Filme {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-
+/*Limite caracteres*/
     public void setSinopse(String sinopse) {
     if (sinopse != null && sinopse.length() > 500) {
         throw new IllegalArgumentException("A sinopse deve ter no máximo 500 caracteres.");
