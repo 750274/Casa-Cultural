@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Filme</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <style>
+        /* Reset CSS completo */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Força o background em toda a tela */
+        html, body {
+            height: 100%;
+            background-color: #ffffff !important;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Wrapper da página */
+        .page-wrapper {
+            min-height: 100vh;
+            background-color: #ffffff;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: transparent;
+        }
+
+        /* Botão toggle dark mode */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Estilos gerais */
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #444;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            color: #555;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        p, li {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        /* Card do filme */
+        .filme-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .filme-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Seção de análises */
+        .analises-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .analise-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #667eea;
+        }
+
+        .analise-nota {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Formulário de análise */
+        .form-analise {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        /* Links */
+        a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        /* DARK MODE STYLES */
+        .dark-mode html,
+        .dark-mode body {
+            background-color: #1a1a1a !important;
+            color: #e0e0e0 !important;
+        }
+
+        .dark-mode .page-wrapper {
+            background-color: #1a1a1a !important;
+        }
+
+        .dark-mode h1 {
+            color: #ffffff !important;
+        }
+
+        .dark-mode h2 {
+            color: #e0e0e0 !important;
+        }
+
+        .dark-mode h3 {
+            color: #cccccc !important;
+        }
+
+        .dark-mode p,
+        .dark-mode li {
+            color: #b0b0b0 !important;
+        }
+
+        .dark-mode .filme-card {
+            background: #2d2d2d !important;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .dark-mode .analises-section {
+            background: #2d2d2d !important;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .dark-mode .analise-item {
+            background: #3d3d3d !important;
+            color: #e0e0e0 !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .dark-mode .form-analise {
+            background: #2d2d2d !important;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .dark-mode label {
+            color: #e0e0e0 !important;
+        }
+
+        .dark-mode input,
+        .dark-mode textarea,
+        .dark-mode select {
+            background: #3d3d3d !important;
+            color: #e0e0e0 !important;
+            border: 2px solid #555 !important;
+        }
+
+        .dark-mode input:focus,
+        .dark-mode textarea:focus,
+        .dark-mode select:focus {
+            border-color: #667eea !important;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3) !important;
+        }
+
+        .dark-mode a {
+            color: #8fb4ff !important;
+        }
+
+        .dark-mode a:hover {
+            color: #a5c6ff !important;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .dark-mode-toggle {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .filme-card,
+            .analises-section,
+            .form-analise {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Botão toggle dark mode -->
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+
+        <div class="container">
+            <h1>Detalhes do Filme</h1>
+            
+            <!-- Card do filme -->
+            <div class="filme-card">
+                <h2 id="filme-titulo"></h2>
+                <p><strong>Gênero:</strong> <span id="filme-genero"></span></p>
+                <p><strong>Ano:</strong> <span id="filme-ano"></span></p>
+                <p><strong>Descrição:</strong> <span id="filme-descricao"></span></p>
+            </div>
+
+            <!-- Seção de análises -->
+            <div class="analises-section">
+                <h2>Análises</h2>
+                <div id="analises-container">
+                    <!-- Análises serão carregadas aqui -->
+                </div>
+            </div>
+
+            <!-- Formulário para nova análise -->
+            <div class="form-analise">
+                <h2>Adicionar Nova Análise</h2>
+                <form id="form-analise">
+                    <div class="form-group">
+                        <label for="nota">Nota (1-10):</label>
+                        <select id="nota" name="nota" required>
+                            <option value="">Selecione uma nota</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="texto">Sua Análise:</label>
+                        <textarea id="texto" name="texto" placeholder="Escreva sua análise do filme..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Adicionar Análise</button>
+                </form>
+            </div>
+
+            <!-- Botões de navegação -->
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="lista-filmes" class="btn btn-secondary">← Voltar para Lista</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para alternar dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            
+            // Salva a preferência
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+            
+            // Atualiza o ícone do botão
+            const toggleBtn = document.querySelector('.dark-mode-toggle');
+            toggleBtn.textContent = isDarkMode ? '☀️' : '🌙';
+        }
+
+        // Carrega a preferência salva
+        function loadDarkModePreference() {
+            const savedDarkMode = localStorage.getItem('darkMode');
+            if (savedDarkMode === 'true') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.dark-mode-toggle').textContent = '☀️';
+            }
+        }
+
+        // Atalho de teclado para dark mode (Ctrl + D)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'd') {
+                e.preventDefault();
+                toggleDarkMode();
+            }
+        });
+// Função para obter parâmetros da URL
+function getUrlParameter(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+}
+  document.addEventListener('DOMContentLoaded', function() {
+    loadDarkModePreference();
+    carregarDetalhesFilme();
+    carregarAnalises();
+     document.getElementById('form-analise').addEventListener('submit', adicionarAnalise);
+
+});// Função para carregar análises
+function carregarAnalises() {
+    const filmeId = getUrlParameter('id');
+    if (!filmeId) return;
+
+    const analises = JSON.parse(localStorage.getItem('analyses') || '[]');
+    const analisesDestefilme = analises.filter(a => a.movieId == filmeId);
+    
+    const container = document.getElementById('analises-container');
+    
+    if (analisesDestefilme.length === 0) {
+        container.innerHTML = '<p>Nenhuma análise encontrada para este filme. Seja o primeiro a avaliar!</p>';
+        return;
+    }
+
+    container.innerHTML = '';
+    
+    analisesDestefilme.forEach(analise => {
+        const analiseDiv = document.createElement('div');
+        analiseDiv.className = 'analise-item';
+        const dataFormatada = new Date(analise.date).toLocaleDateString('pt-BR');
+        
+        analiseDiv.innerHTML = `
+            <div class="analise-nota">⭐ ${analise.rating}/10</div>
+            <p><strong>Análise:</strong> ${analise.text}</p>
+            <p><small>Postado em: ${dataFormatada}</small></p>
+        `;
+        
+        container.appendChild(analiseDiv);
+    });
+}
+// Função para carregar detalhes do filme
+
+// Função para carregar detalhes do filme - usando dados reais do banco
+// Função para carregar detalhes do filme do servidor
+function carregarDetalhesFilme() {
+    const filmeId = getUrlParameter('id');
+    
+    if (!filmeId) {
+        alert('ID do filme não encontrado!');
+        return;
+    }
+
+    // Faz requisição para o servidor buscar o filme
+    fetch(`/api/filmes/${filmeId}`) // Ajuste a URL conforme sua API
+        .then(response => response.json())
+        .then(filme => {
+            if (!filme) {
+                alert('Filme não encontrado no banco!');
+                return;
+            }
+            
+            // Preenche os dados do filme
+           document.getElementById('filme-titulo').textContent = filme.titulo || 'Título não disponível';
+           document.getElementById('filme-genero').textContent = filme.genero || 'Gênero não disponível';
+document.getElementById('filme-ano').textContent = filme.ano || 'Ano não disponível';
+document.getElementById('filme-descricao').textContent = filme.sinopse || 'Sinopse não disponível';
+
+            console.log('Filme carregado do servidor:', filme);
+        })
+        .catch(error => {
+            console.error('Erro ao carregar filme:', error);
+            alert('Erro ao carregar dados do filme');
+        });
+} 
+// Função para adicionar nova análise
+function adicionarAnalise(event) {
+    event.preventDefault();
+    
+    const filmeId = getUrlParameter('id');
+    const nota = document.getElementById('nota').value;
+    const texto = document.getElementById('texto').value;
+    
+    console.log('Dados da análise:', {filmeId, nota, texto});
+    
+    if (!filmeId) {
+        alert('ID do filme não encontrado!');
+        return;
+    }
+    
+    if (!nota || !texto) {
+        alert('Preencha todos os campos!');
+        return;
+    }
+    // 🔽 Aqui entra o fetch correto:
+    fetch(`http://localhost:8080/api/analises/filme/${filmeId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            texto: texto,
+            nota: Number(nota)
+        })
+    })
+
+    // Carrega análises existentes
+    const analises = JSON.parse(localStorage.getItem('analyses') || '[]');
+    
+    // Cria nova análise
+    const novaAnalise = {
+        id: Date.now(),
+        movieId: filmeId,
+        rating: nota,
+        text: texto,
+        date: new Date().toISOString()
+    };
+
+    console.log('Nova análise criada:', novaAnalise);
+
+    // Adiciona à lista
+    analises.push(novaAnalise);
+    localStorage.setItem('analyses', JSON.stringify(analises));
+    
+    // Limpa o formulário
+    document.getElementById('nota').value = '';
+    document.getElementById('texto').value = '';
+    
+    // Recarrega as análises
+    carregarAnalises();
+    
+    alert('Análise adicionada com sucesso!');
+}
+    </script>
+</body>
+</html> 

@@ -1,0 +1,11 @@
+br\com\cflix\visualizar\TelaListagem.class
+br\com\cflix\visualizar\TelaLogin.class
+br\com\cflix\visualizar\TelaLoginBeanInfo.class
+br\com\cflix\cflixpodcast\CflixPodCast.class
+br\com\cflix\dao\UsuarioDAO.class
+br\com\cflix\dao\PodcastDAO.class
+br\com\cflix\util\JPAutil.class
+br\com\cflix\controle\LoginControle.class
+br\com\cflix\modelo\Podcast.class
+br\com\cflix\visualizar\TelaCadastro.class
+br\com\cflix\modelo\Usuario.class

@@ -1,0 +1,63 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+-classpath
+'C:/Users/jvtgo/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar;C:/Users/jvtgo/.m2/repository/org/hibernate/orm/hibernate-core/6.2.7.Final/hibernate-core-6.2.7.Final.jar;C:/Users/jvtgo/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar;C:/Users/jvtgo/.m2/repository/com/mysql/mysql-connector-j/8.0.32/mysql-connector-j-8.0.32.jar;C:/Users/jvtgo/.m2/repository/com/google/protobuf/protobuf-java/3.21.9/protobuf-java-3.21.9.jar;C:/Users/jvtgo/.m2/repository/org/slf4j/slf4j-api/2.0.9/slf4j-api-2.0.9.jar;C:/Users/jvtgo/.m2/repository/org/slf4j/slf4j-simple/2.0.9/slf4j-simple-2.0.9.jar'
+-encoding
+'UTF-8'
+-protected
+--release
+21
+-sourcepath
+'C:/Users/jvtgo/OneDrive/Documentos/NetBeansProjects/CflixPodCast/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/jvtgo/OneDrive/Documentos/NetBeansProjects/CflixPodCast/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'CflixPodCast 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'CflixPodCast 1.0-SNAPSHOT API'
+br.com.cflix.cflixpodcast
+br.com.cflix.controle
+br.com.cflix.dao
+br.com.cflix.modelo
+br.com.cflix.util
+br.com.cflix.visualizar
+C:\Users\jvtgo\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar = 1734619638578
+C:\Users\jvtgo\.m2\repository\org\hibernate\orm\hibernate-core\6.2.7.Final\hibernate-core-6.2.7.Final.jar = 1734619667178
+C:\Users\jvtgo\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar = 1734619638614
+C:\Users\jvtgo\.m2\repository\com\mysql\mysql-connector-j\8.0.32\mysql-connector-j-8.0.32.jar = 1734439149859
+C:\Users\jvtgo\.m2\repository\com\google\protobuf\protobuf-java\3.21.9\protobuf-java-3.21.9.jar = 1731769387957
+C:\Users\jvtgo\.m2\repository\org\slf4j\slf4j-api\2.0.9\slf4j-api-2.0.9.jar = 1734619638927
+C:\Users\jvtgo\.m2\repository\org\slf4j\slf4j-simple\2.0.9\slf4j-simple-2.0.9.jar = 1734619638921
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\src\main\java = 1734663254309
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\allclasses-index.html = 1734705682496
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\allpackages-index.html = 1734705682499
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\copy.svg = 1734705682533
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\element-list = 1734705682293
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\help-doc.html = 1734705682527
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\index-all.html = 1734705682520
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\index.html = 1734705682482
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\link.svg = 1734705682534
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\member-search-index.js = 1734705682505
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\module-search-index.js = 1734705682500
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\overview-summary.html = 1734705682524
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\overview-tree.html = 1734705682478
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\package-search-index.js = 1734705682501
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\script.js = 1734705682531
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\search-page.js = 1734705682540
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\search.html = 1734705682522
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\search.js = 1734705682537
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\serialized-form.html = 1734705682410
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\stylesheet.css = 1734705682530
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\tag-search-index.js = 1734705682506
+C:\Users\jvtgo\OneDrive\Documentos\NetBeansProjects\CflixPodCast\target\reports\apidocs\type-search-index.js = 1734705682502

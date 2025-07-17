@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Filme</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        /* Reset completo para garantir que o fundo funcione */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            min-height: 100vh;
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #ffffff !important;
+            color: #333333 !important;
+            font-family: Arial, sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        /* Força o background no modo escuro */
+        .dark-mode,
+        .dark-mode html,
+        .dark-mode body {
+            background-color: #1a1a1a !important;
+            color: #e0e0e0 !important;
+        }
+
+        /* Wrapper para garantir altura completa */
+        .page-wrapper {
+            min-height: 100vh;
+            background-color: inherit;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .container {
+            background-color: #2d2d2d !important;
+            color: #e0e0e0 !important;
+            box-shadow: 0 2px 10px rgba(255,255,255,0.1) !important;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.6em;
+            margin-bottom: 30px;
+        }
+
+        .dark-mode h1,
+        .dark-mode h2 {
+            color: #74b9ff !important;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .dark-mode label {
+            color: #e0e0e0 !important;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+            color: #333333;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+        }
+
+        .dark-mode .form-control {
+            background-color: #3a3a3a !important;
+            border-color: #555555 !important;
+            color: #e0e0e0 !important;
+        }
+
+        .dark-mode .form-control:focus {
+            border-color: #74b9ff !important;
+            box-shadow: 0 0 0 3px rgba(116,185,255,0.1) !important;
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        select.form-control {
+            cursor: pointer;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+        }
+
+        .dark-mode .btn {
+            background-color: #4dabf7 !important;
+            color: #1a1a1a !important;
+        }
+
+        .dark-mode .btn:hover {
+            background-color: #339af0 !important;
+            box-shadow: 0 4px 12px rgba(77,171,247,0.3) !important;
+        }
+
+        /* Link para voltar à lista */
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40,167,69,0.3);
+        }
+
+        .dark-mode .back-link {
+            background-color: #51cf66 !important;
+            color: #1a1a1a !important;
+        }
+
+        .dark-mode .back-link:hover {
+            background-color: #40c057 !important;
+            box-shadow: 0 4px 12px rgba(81,207,102,0.3) !important;
+        }
+
+        /* Botão de toggle do tema */
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        #theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .dark-mode #theme-toggle {
+            background: #ffd43b;
+            color: #333;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .page-wrapper {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            h2 {
+                font-size: 1.4em;
+            }
+            
+            #theme-toggle {
+                padding: 10px;
+                font-size: 16px;
+            }
+        }
+
+        /* Melhorias visuais para o formulário */
+        .form-group:last-of-type {
+            margin-bottom: 30px;
+        }
+
+        /* Estilo para inputs com erro */
+        .form-control:invalid {
+            border-color: #dc3545;
+        }
+
+        .dark-mode .form-control:invalid {
+            border-color: #fa5252 !important;
+        }
+
+        /* Animação suave para mudanças */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Botão toggle do tema -->
+    <button id="theme-toggle">🌙</button>
+    
+    <!-- Wrapper para garantir altura completa -->
+    <div class="page-wrapper">
+        <div class="container">
+            <h1>🎬 Casa Cultural Cinema</h1>
+            <h2 id="form-titulo">📝 Cadastrar Novo Filme</h2>
+           
+            <form id="form-filme">
+                <input type="hidden" id="id">
+                
+                <div class="form-group">
+                    <label for="titulo">Título</label>
+                    <input type="text" id="titulo" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sinopse">Sinopse</label>
+                    <textarea id="sinopse" class="form-control" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="genero">Gênero</label>
+                    <select id="genero" class="form-control custom-select" required>
+                        <option value="">Selecione</option>
+                        <option value="Acao">Ação</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Comedia">Comédia</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Terror">Terror</option>
+                        <option value="Ficcao">Ficção Científica</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Suspense">Suspense</option>
+                        <option value="Documentario">Documentário</option>
+                        <option value="Animacao">Animação</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ano">Ano</label>
+                    <input type="number" id="ano" class="form-control" min="1900" max="2030" required>
+                </div>
+                
+                <button type="submit" class="btn">Salvar Filme</button>
+            </form>
+
+            <br>
+            <a href="/lista-filmes" class="back-link">📋 Ver Lista de Filmes</a>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const filmeId = params.get("id");
+
+        if (filmeId) {
+            $("#form-titulo").text("✏️ Editar Filme");
+            $.get(`http://localhost:8080/api/filmes/${filmeId}`, function (filme) {
+                $("#id").val(filme.id);
+                $("#titulo").val(filme.titulo);
+                $("#sinopse").val(filme.sinopse);
+                $("#genero").val(filme.genero);
+                $("#ano").val(filme.ano);
+            });
+        }
+
+        $("#form-filme").on("submit", function (event) {
+            event.preventDefault();
+            const filme = {
+                titulo: $("#titulo").val(),
+                sinopse: $("#sinopse").val(),
+                genero: $("#genero").val(),
+                ano: $("#ano").val()
+            };
+
+            if (filmeId) {
+                $.ajax({
+                    url: `http://localhost:8080/api/filmes/${filmeId}`,
+                    type: "PUT",
+                    contentType: "application/json",
+                    data: JSON.stringify(filme),
+                    success: function () {
+                        alert("Filme atualizado com sucesso!");
+                        window.location.href = "/lista-filmes";
+                    },
+                    error: function () {
+                        alert("Erro ao atualizar filme.");
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: "http://localhost:8080/api/filmes",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(filme),
+                    success: function () {
+                        alert("Filme cadastrado com sucesso!");
+                       window.location.href = "/lista-filmes"; 
+                    },
+                    error: function () {
+                        alert("Erro ao cadastrar filme.");
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // Verifica tema salvo
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggle.textContent = '☀️';
+            }
+            
+            // Alterna tema
+            themeToggle.addEventListener('click', function() {
+                body.classList.toggle('dark-mode');
+                
+                if (body.classList.contains('dark-mode')) {
+                    themeToggle.textContent = '☀️';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeToggle.textContent = '🌙';
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // Atalho de teclado (Ctrl + D)
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'd') {
+                    e.preventDefault();
+                    themeToggle.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

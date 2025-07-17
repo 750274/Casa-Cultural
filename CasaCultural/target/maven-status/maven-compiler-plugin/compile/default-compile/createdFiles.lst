@@ -1,0 +1,10 @@
+br\com\casacultural\controller\HomeController.class
+br\com\casacultural\repository\FilmeRepository.class
+br\com\casacultural\DatabaseConfig.class
+br\com\casacultural\controller\FilmeRestController.class
+br\com\casacultural\model\Filme.class
+br\com\casacultural\CasaCultural.class
+br\com\casacultural\controller\FilmeController.class
+br\com\casacultural\repository\AnaliseRepository.class
+br\com\casacultural\controller\AnaliseRestController.class
+br\com\casacultural\model\Analise.class
